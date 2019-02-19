@@ -15,30 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::prefix('customer')->group(function () {
-    Route::get('index', function () {
-        // Hiển thị danh sách khách hàng
-        return view('index');
-    });
 
-    Route::get('create', function (){})->name('create');
+    Route::get('index', 'CustomerController@index');
 
-    Route::post('store', function () {
-        // Xử lý lưu dữ liệu tạo khách hàng thong qua phương thức POST từ form
-    });
+    Route::get('create', 'CustomerController@create');
 
-    Route::get('{id}/show', function () {
-        // Hiển thị thông tin chi tiết khách hàng có mã định danh id
-    })->name('show');
+    Route::post('store', 'CustomerController@store');
 
-    Route::get('{id}/edit', function () {
-        // Hiển thị Form chỉnh sửa thông tin khách hàng
-    });
+    Route::get('{id}/show', 'CustomerController@show');
 
-    Route::patch('{id}/update', function () {
-        // xử lý lưu dữ liệu thông tin khách hàng được chỉnh sửa thông qua PATCH từ form
-    });
+    Route::get('{id}/edit', 'CustomerController@edit');
 
-    Route::delete('{id}', function () {
-        // Xóa thông tin dữ liệu khách hàng
-    });
+    Route::patch('{id}/update', 'CustomerController@update');
+
+    Route::delete('{id}', 'CustomerController@destroy');
+
 });
